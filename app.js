@@ -4,8 +4,18 @@ var favicon = require('static-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
 
 var app = express();
+
+// connect to mongodb
+mongoose.connect('mongodb://localhost:27017/express_app', function() {
+    console.log('Connection has been made');
+})
+.catch(err => {
+    console.error('App starting error:', err.stack);
+    process.exit(1);
+});
 
 // Require file system module
 var fs = require('file-system');
